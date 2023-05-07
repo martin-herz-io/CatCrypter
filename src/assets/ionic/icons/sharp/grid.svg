@@ -1,0 +1,6 @@
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M11.25 11.25H1.5V1.5h9.75v9.75Z"></path>
+  <path d="M22.5 11.25h-9.75V1.5h9.75v9.75Z"></path>
+  <path d="M11.25 22.5H1.5v-9.75h9.75v9.75Z"></path>
+  <path d="M22.5 22.5h-9.75v-9.75h9.75v9.75Z"></path>
+</svg>
