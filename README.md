@@ -19,6 +19,8 @@
 
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/martin-herz-io/CatCrypter?logo=github&style=for-the-badge">
 
+<img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/martin-herz-io/CatCrypter?style=for-the-badge">
+
 <img alt="GitHub" src="https://img.shields.io/github/license/martin-herz-io/CatCrypter?label=License&style=for-the-badge">
 
 </p>
@@ -32,3 +34,17 @@ CatCrypter is developed using web technologies in React, Vite and Tauri. Current
 
 ### Warning:
 At the moment there is no productive version of CatCrypter available. Bugs are still possible.
+
+
+
+## How to install CatCrypter?
+To install and use CatCrypter, it is recommended to use the installer. Just go to [Releases](https://github.com/martin-herz-io/CatCrypter/releases) and download the latest version (msi installer).
+
+### MSI Installier (Recommended)
+Coming soon
+
+### ZIP Installer (Not recommended)
+Coming soon
+
+### Repository Build (Not recommended)
+Coming soon
