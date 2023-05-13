@@ -3,7 +3,7 @@ import React from 'react'
 import { ReactSVG } from 'react-svg';
 
 // Icons import
-import { get_ionic_line_icon, get_ionic_sharp_icon, get_ionic_solid_icon } from '../assets/ionic'; // Ionic Icons
+import { get_ionic_line_icon, get_ionic_sharp_icon, get_ionic_solid_icon } from '../../assets/ionic'; // Ionic Icons
 
 // Properties
 export type props = {

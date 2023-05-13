@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import { Icon } from './Icon';
+import { Icon } from './utilities/Icon';
 
 // Properties
 export type props = {

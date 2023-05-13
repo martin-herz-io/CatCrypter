@@ -2,7 +2,7 @@
 import { exists, BaseDirectory, writeTextFile, readTextFile } from "@tauri-apps/api/fs";
 import { useEffect, useState } from "react";
 import { NavButton } from "./components/NavButton";
-import { Icon } from "./components/Icon";
+import { Icon } from "./components/utilities/Icon";
 import { PasswordItem } from "./components/PasswordItem";
 
 
@@ -74,6 +74,30 @@ function App() {
 
 
   
+  // Add Account Modal
+  const addAccountModal = (
+    <div className={`flex flex-col gap-4 items-center`}>
+      <div className={"text-center"}>
+        <p className={"text-2xl opacity-60 cursor-default"}>Account hinzufügen</p>
+      </div>
+      <div className={"flex flex-col gap-4"}>
+          
+        <input type="text" placeholder={"Titel"} className={"textbox"} />
+          
+        <input type="text" placeholder={"Anmelde-ID"} className={"textbox"} />
+          
+        <input type="password" placeholder={"Passwort"} className={"textbox"} />
+
+        <div className={"flex flex-row gap-4"}>
+          <button onClick={() => {}} className={"button btn-ok"}>Hinzufügen</button>
+          <button onClick={() => {setModalState(false)}} className={"button"}>Abbrechen</button>
+        </div>
+      </div>
+    </div>
+  )
+
+
+
   return (
     <div className={"w-screen h-screen flex flex-row overflow-hidden"}>
 
@@ -141,7 +165,7 @@ function App() {
               )
             })}
 
-            <button onClick={() => {setModalContent(<></>); toggleModal()}} className={"group w-[36rem] hover:scale-[0.975] mx-auto px-4 py-4 border-2 border-zinc-800 hover:border-zinc-700 border-dashed rounded-xl relative flex items-center gap-3 cursor-pointer transition-all duration-300"}>
+            <button onClick={() => {setModalContent(addAccountModal); toggleModal()}} className={"group w-[36rem] hover:scale-[0.975] mx-auto px-4 py-4 border-2 border-zinc-800 hover:border-zinc-700 border-dashed rounded-xl relative flex items-center gap-3 cursor-pointer transition-all duration-300"}>
               <Icon name={"add-circle"} className={"w-8 opacity-60 group-hover:opacity-100 transition-all duration-300"} />
               <p className={"text-lg font-semibold mt-1 cursor-pointer opacity-60 group-hover:opacity-100 transition-all duration-300"}>Hinzufügen</p>
             </button>
