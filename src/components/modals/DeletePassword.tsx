@@ -24,7 +24,7 @@ export const DeletePassword: React.FC<Props> = (
 
     // Delete current password from list and set new list
     const deletePassword = () => {
-        let newList = [...passwordList]
+        const newList = [...passwordList]
         newList.splice(index, 1)
         setPasswordList(newList)
         setModalState(false)
