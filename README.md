@@ -5,11 +5,15 @@
 </p>
 
 <p align="center">
-<img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/martin-herz-io/CatCrypter?include_prereleases&logo=github&style=for-the-badge">
+<a href="https://github.com/martin-herz-io/CatCrypter/releases">
+  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/martin-herz-io/CatCrypter?include_prereleases&logo=github&style=for-the-badge">
+</a>
 
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/martin-herz-io/CatCrypter?logo=github&style=for-the-badge">
 
-<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/martin-herz-io/CatCrypter/total?logo=github&style=for-the-badge">
+<a href="https://github.com/martin-herz-io/CatCrypter/releases">
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/martin-herz-io/CatCrypter/total?logo=github&style=for-the-badge">
+</a>
 
 <br>
  
@@ -17,9 +21,13 @@
 
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/martin-herz-io/CatCrypter?logo=github&style=for-the-badge">
 
-<img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/martin-herz-io/CatCrypter?logo=github&style=for-the-badge">
+<a href="https://www.codefactor.io/repository/github/martin-herz-io/catcrypter">
+  <img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/martin-herz-io/CatCrypter?logo=github&style=for-the-badge">
+</a>
 
-<img alt="GitHub" src="https://img.shields.io/github/license/martin-herz-io/CatCrypter?logo=github&label=License&style=for-the-badge">
+<a href="https://creativecommons.org/publicdomain/zero/1.0/deed">
+  <img alt="GitHub" src="https://img.shields.io/github/license/martin-herz-io/CatCrypter?logo=github&label=License&style=for-the-badge">
+</a>
 
 </p>
 
