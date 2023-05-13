@@ -1,5 +1,5 @@
 // React imports
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Icon } from './utilities/Icon';
 import { EditPassword } from './modals/EditPassword';
 import { DeletePassword } from './modals/DeletePassword';
