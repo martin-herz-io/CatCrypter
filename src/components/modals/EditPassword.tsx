@@ -1,5 +1,5 @@
 // React imports
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Textbox } from '../utilities/Textbox';
 
 // Properties: Textbox
