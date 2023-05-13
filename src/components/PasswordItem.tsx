@@ -1,6 +1,8 @@
 // React imports
-import React, { useState } from 'react'
-import { Icon } from './Icon';
+import React, { useEffect, useState } from 'react'
+import { Icon } from './utilities/Icon';
+import { EditPassword } from './modals/EditPassword';
+import { DeletePassword } from './modals/DeletePassword';
 
 // Properties
 export type props = {
@@ -46,28 +48,6 @@ export const PasswordItem: React.FC<props> = ({ index, i, passwordList, setPassw
         navigator.clipboard.writeText(text)
     }
 
-    // Delete current password from list and set new list
-    const deletePassword = () => {
-        let newList = [...passwordList]
-        newList.splice(index, 1)
-        setPasswordList(newList)
-        setModalState(false)
-    }
-
-    // Delete modal
-    const deleteModal = (
-        <div className={`flex flex-col gap-4 items-center`}>
-            <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>Passwort löschen?</p>
-                <p className={"opacity-60 cursor-default"}>Dieser Vorgang kann nicht rückgängig gemacht werden.</p>
-            </div>
-            <div className={"flex flex-row gap-4"}>
-                <button onClick={deletePassword} className={"button btn-critical"}>Löschen</button>
-                <button onClick={() => {setModalState(false)}} className={"button"}>Abbrechen</button>
-            </div>
-        </div>
-    )
-
     return (
         <div className={"w-[36rem] mx-auto px-4 py-2 bg-zinc-800/50 border-2 border-zinc-800 rounded-xl relative"}>
             <p className={"font-semibold text-xl opacity-60 cursor-default"}>{ i.title }</p>
@@ -93,8 +73,8 @@ export const PasswordItem: React.FC<props> = ({ index, i, passwordList, setPassw
             </div>
 
             <div className={"absolute top-2 right-2 flex gap-2"}>
-                <button><Icon name={"cog"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
-                <button onClick={() => {setModalContent(deleteModal); toggleModal()}}><Icon name={"trash"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
+                <button onClick={() => {setModalContent(<EditPassword i={i} index={index} passwordList={passwordList} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}}><Icon name={"cog"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
+                <button onClick={() => {setModalContent(<DeletePassword title={i.title} index={index} passwordList={passwordList} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}}><Icon name={"trash"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
             </div>
         </div>
     )
