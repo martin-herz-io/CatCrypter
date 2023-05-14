@@ -25,7 +25,6 @@ export const Textbox: React.FC<Props> = (
     // Update value state
     useEffect(() => {
         onValueChange(inputValue)
-        console.log(inputValue)
     }, [inputValue, onValueChange])
 
     
