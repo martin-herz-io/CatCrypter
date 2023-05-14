@@ -1,5 +1,4 @@
 // Imports
-import { exists, BaseDirectory, writeTextFile, readTextFile } from "@tauri-apps/api/fs";
 import { useState } from "react";
 import { NavButton } from "./components/NavButton";
 import { Icon } from "./components/utilities/Icon";
