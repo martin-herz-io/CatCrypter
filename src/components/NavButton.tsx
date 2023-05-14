@@ -18,11 +18,11 @@ export const NavButton: React.FC<props> = ({ title, date, logo, color, active, a
 
     // Date to string (DD.MM.YYYY) with double digits
     const dateToString = (date: string) => {
-        const d = new Date(parseInt(date) * 1000)
-        const day = d.getDate().toString().padStart(2, '0')
-        const month = (d.getMonth() + 1).toString().padStart(2, '0')
-        const year = d.getFullYear().toString()
-        return `${day}.${month}.${year}`
+      const d = new Date(parseInt(date))
+      const day = d.getDate().toString().padStart(2, '0')
+      const month = (d.getMonth() + 1).toString().padStart(2, '0')
+      const year = d.getFullYear().toString()
+      return `${day}.${month}.${year}`
     }
 
     // First letter from title
