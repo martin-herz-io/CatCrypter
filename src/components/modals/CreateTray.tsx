@@ -78,8 +78,14 @@ export const CreateTray: React.FC<Props> = (
                 })
             })
 
+            // Check if Production or Development mode
+            let configFile = "config.txt"
+            if (process.env.NODE_ENV === "development") {
+            configFile = "config.debug.txt"
+            }
+
             // Load config file
-            fs.readTextFile("config.txt", { dir: fs.BaseDirectory.AppLocalData }).then((data) => {
+            fs.readTextFile(configFile, { dir: fs.BaseDirectory.AppLocalData }).then((data) => {
                 const config = JSON.parse(data)
                 
                 // Add new tray to config file
