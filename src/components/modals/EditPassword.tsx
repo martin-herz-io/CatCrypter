@@ -46,7 +46,7 @@ export const EditPassword: React.FC<Props> = (
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>Account hinzufügen</p>
+                <p className={"text-2xl opacity-60 cursor-default"}>Account bearbeiten</p>
             </div>
             <div className={"flex flex-col gap-4"}>
                 
