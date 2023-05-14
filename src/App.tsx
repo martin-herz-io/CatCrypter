@@ -19,16 +19,23 @@ function App() {
   // Loaded tray list from file
   const [trayList, setTrayList] = useState([
     {
-      "title": "BetterVisuals Social Media",
-      "date": "1675258838"
+      "title": "CatCrypter 1",
+      "logo": "/app-icon.png",
+      "color": "#f59e0b",
+      "date": "1675258838",
+      "location": "",
     },
     {
-      "title": "BetterVisuals Server",
-      "date": "1675258838"
+      "title": "CatCrypter 2",
+      "color": "#a855f7",
+      "date": "1678258838",
+      "location": "",
     },
     {
-      "title": "martin-herz.io",
-      "date": "1675258838"
+      "title": "CatCrypter 3",
+      "color": "#ec4899",
+      "date": "1682258838",
+      "location": "",
     },
   ])
 
@@ -130,7 +137,7 @@ function App() {
           const active = index === selectedTray
 
           return (
-            <NavButton key={index} onClick={() => {setSelectedTray(index)}} title={i.title} date={i.date} active={active} />
+            <NavButton key={index} onClick={() => {setSelectedTray(index)}} title={i.title} logo={i.logo ? i.logo : null} color={i.color} date={i.date} active={active} />
           )
         })}
 
