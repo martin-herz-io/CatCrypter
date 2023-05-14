@@ -17,7 +17,7 @@ function App() {
 
 
   // Loaded tray list from file
-  const [trayList, setTrayList] = useState([
+  const [trayList] = useState([
     {
       "title": "CatCrypter 1",
       "logo": "/app-icon.png",
