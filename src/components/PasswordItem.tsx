@@ -14,13 +14,29 @@ export type props = {
     },
     passwordList: { title: string; username: string; password: string; }[];
     setPasswordList: React.Dispatch<React.SetStateAction<{ title: string; username: string; password: string; }[]>>;
+    trayList: { title: string; logo?: string; color?: string; date: string; location: string; }[];
+    selectedTray: number|null;
+    currentTrayPassword: string;
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
     setModalContent: React.Dispatch<React.ReactNode>;
     toggleModal: () => void;
 }
 
 // Component
-export const PasswordItem: React.FC<props> = ({ index, i, passwordList, setPasswordList, setModalState, setModalContent, toggleModal }) => {
+export const PasswordItem: React.FC<props> = (
+    { 
+        index,
+        i,
+        passwordList,
+        setPasswordList,
+        trayList,
+        selectedTray,
+        currentTrayPassword,
+        setModalState,
+        setModalContent,
+        toggleModal
+    }
+) => {
 
     // Hidden password
     const hidenPassword = i.password.replace(/./g, "•")
@@ -73,8 +89,8 @@ export const PasswordItem: React.FC<props> = ({ index, i, passwordList, setPassw
             </div>
 
             <div className={"absolute top-2 right-2 flex gap-2"}>
-                <button onClick={() => {setModalContent(<EditPassword i={i} index={index} passwordList={passwordList} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}}><Icon name={"cog"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
-                <button onClick={() => {setModalContent(<DeletePassword title={i.title} index={index} passwordList={passwordList} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}}><Icon name={"trash"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
+                <button onClick={() => {setModalContent(<EditPassword i={i} index={index} passwordList={passwordList} setPasswordList={setPasswordList} trayList={trayList} selectedTray={selectedTray} currentTrayPassword={currentTrayPassword} setModalState={setModalState} />); toggleModal()}}><Icon name={"cog"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
+                <button onClick={() => {setModalContent(<DeletePassword title={i.title} index={index} passwordList={passwordList} setPasswordList={setPasswordList} trayList={trayList} selectedTray={selectedTray} currentTrayPassword={currentTrayPassword} setModalState={setModalState} />); toggleModal()}}><Icon name={"trash"} className={"w-4 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer"} /></button>
             </div>
         </div>
     )
