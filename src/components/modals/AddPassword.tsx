@@ -46,7 +46,7 @@ export const AddPassword: React.FC<Props> = (
         fs.readTextFile(trayPath).then((data) => {
             const trayFile = JSON.parse(data)
             
-            // Check if accounts list exists
+            // Check if account list exists
             let decryptedData
             if (trayFile.accounts === null) {
 
