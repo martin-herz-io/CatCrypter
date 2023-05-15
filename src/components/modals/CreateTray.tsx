@@ -93,7 +93,7 @@ export const CreateTray: React.FC<Props> = (
 
                 // Save config file
                 fs.writeFile({
-                    path: "config.txt",
+                    path: configFile,
                     contents: JSON.stringify(config)
                 }, { dir: fs.BaseDirectory.AppLocalData })
             })
