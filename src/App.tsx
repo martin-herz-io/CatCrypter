@@ -1,9 +1,12 @@
 // Imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fs } from '@tauri-apps/api'
 import { NavButton } from "./components/NavButton";
 import { Icon } from "./components/utilities/Icon";
 import { PasswordItem } from "./components/PasswordItem";
 import { AddPassword } from "./components/modals/AddPassword";
+import { CreateTray } from "./components/modals/CreateTray";
+import { LoadTray } from "./components/modals/LoadTray";
 
 
 // Application
@@ -17,67 +20,47 @@ function App() {
 
 
   // Loaded tray list from file
-  const [trayList] = useState([
-    {
-      "title": "CatCrypter 1",
-      "logo": "/app-icon.png",
-      "color": "#f59e0b",
-      "date": "1675258838",
-      "location": "",
-    },
-    {
-      "title": "CatCrypter 2",
-      "color": "#a855f7",
-      "date": "1678258838",
-      "location": "",
-    },
-    {
-      "title": "CatCrypter 3",
-      "color": "#ec4899",
-      "date": "1682258838",
-      "location": "",
-    },
-  ])
+  const [trayList, setTrayList] = useState<{ title: string; logo?: string; color?: string; date: string; location: string; }[]>([])
 
   // Selected tray list
   const [selectedTray, setSelectedTray] = useState<number|null>(null)
 
+  // Current tray password
+  const [currentTrayPassword, setCurrentTrayPassword] = useState<string>("")
+
 
 
   // Current password list
-  const [passwordList, setPasswordList] = useState([
-    {
-      "title": "Instagram",
-      "username": "Max.Mustermann",
-      "password": "U8UawqbxOfOJ7H5C£99=swDLLDxx!+6R",
-    },
-    {
-      "title": "Twitter",
-      "username": "MaxMustermann",
-      "password": "XS4$g¤C5@-J$La+SLUx-XZ£h#YR+-u+Q",
-    },
-    {
-      "title": "Facebook",
-      "username": "max@mustermann.de",
-      "password": "A3AKC63zI#AQQqyZ§CU3g57%O302ZH¤T",
-    },
+  const [passwordList, setPasswordList] = useState<{ title: string; username: string; password: string; }[]>([])
 
-    {
-      "title": "Instagram",
-      "username": "Max.Mustermann",
-      "password": "U8UawqbxOfOJ7H5C£99=swDLLDxx!+6R",
-    },
-    {
-      "title": "Twitter",
-      "username": "MaxMustermann",
-      "password": "XS4$g¤C5@-J$La+SLUx-XZ£h#YR+-u+Q",
-    },
-    {
-      "title": "Facebook",
-      "username": "max@mustermann.de",
-      "password": "A3AKC63zI#AQQqyZ§CU3g57%O302ZH¤T",
-    },
-  ])
+
+
+  // Load tray list from file
+  useEffect(() => {
+    // Check if Production or Development mode
+    let configFile = "config.txt"
+    if (process.env.NODE_ENV === "development") {
+      configFile = "config.debug.txt"
+    }
+
+    // Check if config file exists and create it if not
+    fs.exists(configFile, { dir: fs.BaseDirectory.AppLocalData }).then((exists) => {
+      if (!exists) {
+
+        // Create config file
+        fs.writeTextFile(configFile, JSON.stringify({
+          "trayList": []
+        }), { dir: fs.BaseDirectory.AppLocalData })
+      } else {
+
+        // Load config file
+        fs.readTextFile(configFile, { dir: fs.BaseDirectory.AppLocalData }).then((data) => {
+          const config = JSON.parse(data)
+          setTrayList(config.trayList)
+        })
+      }
+    })
+  }, [])
 
 
 
@@ -113,12 +96,12 @@ function App() {
           const active = index === selectedTray
 
           return (
-            <NavButton key={index} onClick={() => {setSelectedTray(index)}} title={i.title} logo={i.logo ? i.logo : null} color={i.color} date={i.date} active={active} />
+            <NavButton key={index} onClick={() => {setModalContent(<LoadTray select={index} trayList={trayList} setSelectedTray={setSelectedTray} setCurrentTrayPassword={setCurrentTrayPassword} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}} title={i.title} logo={i.logo ? i.logo : null} color={i.color} date={i.date} active={active} />
           )
         })}
 
         {/* Add button */}
-        <NavButton onClick={() => {setModalContent(<></>); toggleModal()}} title={""} date={""} addButton={true} />
+        <NavButton onClick={() => {setModalContent(<CreateTray trayList={trayList} setTrayList={setTrayList} setModalState={setModalState} />); toggleModal()}} title={""} date={""} addButton={true} />
 
       </div>
 
@@ -141,6 +124,9 @@ function App() {
                   i={i}
                   passwordList={passwordList}
                   setPasswordList={setPasswordList}
+                  trayList={trayList}
+                  selectedTray={selectedTray}
+                  currentTrayPassword={currentTrayPassword}
                   setModalState={setModalState}
                   setModalContent={setModalContent}
                   toggleModal={toggleModal}
@@ -148,7 +134,7 @@ function App() {
               )
             })}
 
-            <button onClick={() => {setModalContent(<AddPassword passwordList={passwordList} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}} className={"group w-[36rem] hover:scale-[0.975] mx-auto px-4 py-4 border-2 border-zinc-800 hover:border-zinc-700 border-dashed rounded-xl relative flex items-center gap-3 cursor-pointer transition-all duration-300"}>
+            <button onClick={() => {setModalContent(<AddPassword passwordList={passwordList} setPasswordList={setPasswordList} trayList={trayList} selectedTray={selectedTray} currentTrayPassword={currentTrayPassword} setModalState={setModalState} />); toggleModal()}} className={"group w-[36rem] hover:scale-[0.975] mx-auto px-4 py-4 border-2 border-zinc-800 hover:border-zinc-700 border-dashed rounded-xl relative flex items-center gap-3 cursor-pointer transition-all duration-300"}>
               <Icon name={"add-circle"} className={"w-8 opacity-60 group-hover:opacity-100 transition-all duration-300"} />
               <p className={"text-lg font-semibold mt-1 cursor-pointer opacity-60 group-hover:opacity-100 transition-all duration-300"}>Hinzufügen</p>
             </button>
