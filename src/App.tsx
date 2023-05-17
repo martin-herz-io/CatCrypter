@@ -120,6 +120,7 @@ function App() {
             {passwordList.map((i, index) => {
               return (
                 <PasswordItem 
+                  key={index}
                   index={index}
                   i={i}
                   passwordList={passwordList}

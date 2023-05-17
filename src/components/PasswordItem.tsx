@@ -65,7 +65,7 @@ export const PasswordItem: React.FC<props> = (
     }
 
     return (
-        <div className={"w-[36rem] mx-auto px-4 py-2 bg-zinc-800/50 border-2 border-zinc-800 rounded-xl relative"}>
+        <div key={index} className={"w-[36rem] mx-auto px-4 py-2 bg-zinc-800/50 border-2 border-zinc-800 rounded-xl relative"}>
             <p className={"font-semibold text-xl opacity-60 cursor-default"}>{ i.title }</p>
                   
             <div className={"mt-2 flex gap-8"}>
