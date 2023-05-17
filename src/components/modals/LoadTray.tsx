@@ -42,6 +42,11 @@ export const LoadTray: React.FC<Props> = (
         // Format password
         const pw = `CatCrypter-TrayPassword:;!${inputPassword}!;:08022002.23w19mah`
 
+        // Check if tray file exists
+        fs.exists(tray.location).then((exists) => {
+            if (!exists) { dialog.message('Die ausgewählte Ablage existiert nicht mehr.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
+        })
+
         // Open tray file
         fs.readTextFile(tray.location).then((data) => {
             const trayFile = JSON.parse(data)
