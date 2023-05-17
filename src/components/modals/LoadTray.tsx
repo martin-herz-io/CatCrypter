@@ -55,6 +55,9 @@ export const LoadTray: React.FC<Props> = (
             bcrypt.compare(pw, trayFile.password).then((result) => {
                 if (!result) { dialog.message('Das eingegebene Passwort ist falsch.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
 
+                // Close modal
+                setModalState(false)
+
                 // Set selected tray
                 setSelectedTray(select)
 
@@ -67,9 +70,6 @@ export const LoadTray: React.FC<Props> = (
 
                 // Set password list
                 setPasswordList(decryptedData)
-
-                // Close modal
-                setModalState(false)
             })
         })
     }
