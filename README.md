@@ -47,10 +47,12 @@ At the moment there is no productive version of CatCrypter available. Bugs are s
 To install and use CatCrypter, it is recommended to use the installer. Just go to [Releases](https://github.com/martin-herz-io/CatCrypter/releases) and download the latest version (msi installer).
 
 ### MSI Installier (Recommended)
-Coming soon
-
-### ZIP Installer (Not recommended)
-Coming soon
+1. To install CatCrypter, simply download the latest MSI file from [here](https://github.com/martin-herz-io/CatCrypter/releases).
+2. Now open the installer and click on "Next", then choose your storage location, then click on "Next" again and on "Install".
+3. Wait until CatCrypter has been installed, this shouldn't take too long.
+4. When you open CatCrypter now, you should find an empty workspace.
+5. Click on "Add Storage" to create your first storage or open an existing one.
+6. Done. You can now store accounts in your storage.
 
 ### Repository Build (Not recommended)
 1. Clone the repository (or download it as a ZIP).
@@ -58,3 +60,14 @@ Coming soon
 3. Download all needed npm packages by typing `npm install`.
 4. Now create a build version of the project by entering the following command `npm run tauri build`.
 5. Now you can install CatCrypter in the displayed folder *(usually: /src-tauri/target/release/bundle/msi/)* using MSI.
+
+
+
+## Preview
+<img src="https://i.imgur.com/ZIdn1x4.png">
+
+<img src="https://i.imgur.com/BVTsN6i.png">
+
+<img src="https://i.imgur.com/JqgMG0x.png">
+
+<img src="https://i.imgur.com/AQxO2Ix.png">
