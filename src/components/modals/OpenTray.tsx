@@ -54,8 +54,17 @@ export const OpenTray: React.FC<Props> = (
                     return
                 }
 
+                const newTray = {
+                    title: tray.title,
+                    logo: tray.logo,
+                    color: tray.color,
+                    date: tray.date,
+                    password: tray.password,
+                    location: inputLocation
+                }
+
                 // Add new tray to list
-                setTrayList([...trayList, tray])
+                setTrayList([...trayList, newTray])
 
                 // Check if Production or Development mode
                 let configFile = "config.txt"
@@ -68,7 +77,7 @@ export const OpenTray: React.FC<Props> = (
                     const config = JSON.parse(data)
                     
                     // Add new tray to config file
-                    config.trayList.push(tray)
+                    config.trayList.push(newTray)
 
                     // Save config file
                     fs.writeFile({
