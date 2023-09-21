@@ -10,8 +10,6 @@ import { fs } from '@tauri-apps/api';
 
 // Properties: Textbox
 export type Props = {
-    setModalState: React.Dispatch<React.SetStateAction<boolean>>;
-    setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode>>;
     t: (key: string) => string;
     v: string;
     language: string;
@@ -21,8 +19,6 @@ export type Props = {
 // Component: Textbox
 export const Settings: React.FC<Props> = (
     {
-        setModalState,
-        setModalContent,
         t,
         v,
         language,
@@ -69,7 +65,7 @@ export const Settings: React.FC<Props> = (
 
             // Load config file
             fs.readTextFile(configFile, { dir: fs.BaseDirectory.AppLocalData }).then((data) => {
-                let config = JSON.parse(data)
+                const config = JSON.parse(data)
                 
                 // Update language
                 config.language = lang
