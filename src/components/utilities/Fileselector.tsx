@@ -8,6 +8,7 @@ export type Props = {
     value?: string;
     placeholder?: string;
     type?: string;
+    filters?: { name: string; extensions: string[] }[];
     onValueChange?: (val: string) => void;
 }
 
@@ -17,6 +18,7 @@ export const Fileselector: React.FC<Props> = (
         value = "",
         placeholder = "",
         type = "open",
+        filters = [],
         onValueChange = () => {}
     }
 ) => {
@@ -36,9 +38,7 @@ export const Fileselector: React.FC<Props> = (
                 const result = await dialog.open({
                     multiple: false,
                     directory: false,
-                    filters: [
-                        { name: 'Bilder', extensions: ['png', 'gif', 'jpeg', 'jpg', 'bmp', 'svg'] }
-                    ]
+                    filters: filters
                 })
                 if (result && result.length > 0) {
                     const path = result.toString()
@@ -53,9 +53,7 @@ export const Fileselector: React.FC<Props> = (
             try {
                 const result = await dialog.save({
                     defaultPath: 'C:\\Users\\User\\Desktop\\Neue Ablage.ccp',
-                    filters: [
-                        { name: 'CatCrypter Ablage', extensions: ['ccp'] }
-                    ]
+                    filters: filters
                 })
                 if (result && result.length > 0) {
                     const path = result.toString()
