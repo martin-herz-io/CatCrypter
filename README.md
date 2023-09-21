@@ -64,10 +64,10 @@ To install and use CatCrypter, it is recommended to use the installer. Just go t
 
 
 ## Preview
-<img src="https://i.imgur.com/ZIdn1x4.png">
+<img src="https://i.imgur.com/GkAQTnm.png">
 
-<img src="https://i.imgur.com/BVTsN6i.png">
+<img src="https://i.imgur.com/kW1hqqK.png">
 
-<img src="https://i.imgur.com/JqgMG0x.png">
+<img src="https://i.imgur.com/sHcohIj.png">
 
-<img src="https://i.imgur.com/AQxO2Ix.png">
+<img src="https://i.imgur.com/TGyJYjP.png">
