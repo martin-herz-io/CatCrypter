@@ -15,7 +15,14 @@ import { Settings } from "./components/modals/Settings";
 // Application
 function App() {
 
-  const v = "1.1.0-beta"
+  // Version
+  const v = "1.2.0-beta"
+
+  // Check if Production or Development mode
+  let debugMode = false
+  if (process.env.NODE_ENV === "development") {
+    debugMode = true
+  }
 
   // Language
   const [language, setLanguage] = useState<string>("en")
@@ -46,9 +53,9 @@ function App() {
   // Load tray list from file
   useEffect(() => {
 
-    // Check if Production or Development mode
+    // Config file name depending on 
     let configFile = "config.txt"
-    if (process.env.NODE_ENV === "development") {
+    if (debugMode) {
       configFile = "config.debug.txt"
     }
 
@@ -71,6 +78,10 @@ function App() {
         })
       }
     })
+
+    if (debugMode === false) {
+      document.addEventListener("contextmenu", (e) => { e.preventDefault() })
+    }
   }, [])
 
 
