@@ -110,19 +110,19 @@ export const CreateTray: React.FC<Props> = (
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>Ablage hinzufügen</p>
+                <p className={"text-2xl opacity-60 cursor-default"}>Ablage erstellen</p>
             </div>
             <div className={"flex flex-col gap-4 max-w-[228.08px]"}>
                 
                 <Textbox type={"text"} placeholder={"Name*"} onValueChange={setInputName} />
                 
-                <Fileselector type={"open"} placeholder={"Symbol"} onValueChange={setInputLogo} />
+                <Fileselector type={"open"} filters={[{ name: 'Bilder', extensions: ['png', 'gif', 'jpeg', 'jpg', 'bmp', 'svg'] }]} placeholder={"Symbol"} onValueChange={setInputLogo} />
                 
                 <Textbox type={"password"} placeholder={"Passwort*"} onValueChange={setInputPassword} />
 
                 <Textbox type={"password"} placeholder={"Passwort bestätigen*"} onValueChange={setInputPassword2} />
 
-                <Fileselector type={"save"} placeholder={"Speicherort*"} onValueChange={setInputLocation} />
+                <Fileselector type={"save"} filters={[{ name: 'CatCrypter Ablage', extensions: ['ccp'] }]} placeholder={"Speicherort*"} onValueChange={setInputLocation} />
         
                 <div className={"flex flex-row gap-4"}>
                     <button onClick={createTray} className={"button btn-ok"}>Speichern</button>
