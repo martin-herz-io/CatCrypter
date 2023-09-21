@@ -10,6 +10,7 @@ export type Props = {
     trayList: { title: string; logo?: string; color?: string; date: string; location: string; }[];
     setTrayList: React.Dispatch<React.SetStateAction<{ title: string; logo?: string; color?: string; date: string; location: string; }[]>>;
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+    t: (key: string) => string;
 }
 
 // Component: Textbox
@@ -17,7 +18,8 @@ export const CreateTray: React.FC<Props> = (
     {
         trayList,
         setTrayList,
-        setModalState
+        setModalState,
+        t
     }
 ) => {
 
@@ -32,11 +34,11 @@ export const CreateTray: React.FC<Props> = (
     const createTray = async () => {
         
         // Check if all fields are filled
-        if (inputName === '') { dialog.message('Bitte gebe ein Name für die Account-Ablage ein.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
-        if (inputPassword === '') { dialog.message('Bitte gebe ein Passwort für die Account-Ablage ein.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
-        if (inputPassword !== inputPassword2) { dialog.message('Die beiden Passwörter stimmen nicht überein.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
-        if (inputLocation === '') { dialog.message('Bitte wähle ein Speicherort für die Account-Ablage aus.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
-        if (!inputLocation.endsWith('.ccp')) { dialog.message('Bitte wähle einen gültigen Speicherort für die Account-Ablage aus.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
+        if (inputName === '') { dialog.message(t('dialog.enterName'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
+        if (inputPassword === '') { dialog.message(t('dialog.enterPasswordSave'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
+        if (inputPassword !== inputPassword2) { dialog.message(t('dialog.passwordsNotEqual'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
+        if (inputLocation === '') { dialog.message(t('dialog.locationSave'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
+        if (!inputLocation.endsWith('.ccp')) { dialog.message(t('dialog.validTray'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
 
         // Select random color from list
         const colors = ['#ef4444', '#f97316', '#f59e0b', '#eab308', '#84cc16', '#22c55e', '#10b981', '#14b8a6', '#06b6d4', '#0ea5e9', '#3b82f6', '#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899', '#f43f5e']
@@ -99,7 +101,7 @@ export const CreateTray: React.FC<Props> = (
             })
 
         } catch (error) {
-            dialog.message('Die Account-Ablage konnte nicht erstellt werden.', { title: 'CatCrypter - Fehler', type: 'error' })
+            dialog.message(t('dialog.createError'), { title: `CatCrypter - ${t('error')}`, type: 'error' })
             return
         }
 
@@ -110,23 +112,23 @@ export const CreateTray: React.FC<Props> = (
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>Ablage erstellen</p>
+                <p className={"text-2xl opacity-60 cursor-default"}>{t('createTray')}</p>
             </div>
             <div className={"flex flex-col gap-4 max-w-[228.08px]"}>
                 
-                <Textbox type={"text"} placeholder={"Name*"} onValueChange={setInputName} />
+                <Textbox type={"text"} placeholder={`${t('name')}*`} onValueChange={setInputName} />
                 
-                <Fileselector type={"open"} filters={[{ name: 'Bilder', extensions: ['png', 'gif', 'jpeg', 'jpg', 'bmp', 'svg'] }]} placeholder={"Symbol"} onValueChange={setInputLogo} />
+                <Fileselector t={t} type={"open"} filters={[{ name: t('images'), extensions: ['png', 'gif', 'jpeg', 'jpg', 'bmp', 'svg'] }]} placeholder={"Symbol"} onValueChange={setInputLogo} />
                 
-                <Textbox type={"password"} placeholder={"Passwort*"} onValueChange={setInputPassword} />
+                <Textbox type={"password"} placeholder={`${t('password')}*`} onValueChange={setInputPassword} />
 
-                <Textbox type={"password"} placeholder={"Passwort bestätigen*"} onValueChange={setInputPassword2} />
+                <Textbox type={"password"} placeholder={`${t('passwordRepeat')}*`} onValueChange={setInputPassword2} />
 
-                <Fileselector type={"save"} filters={[{ name: 'CatCrypter Ablage', extensions: ['ccp'] }]} placeholder={"Speicherort*"} onValueChange={setInputLocation} />
+                <Fileselector t={t} type={"save"} filters={[{ name: t('CatCrypterTray'), extensions: ['ccp'] }]} placeholder={`${t('location')}*`} onValueChange={setInputLocation} />
         
                 <div className={"flex flex-row gap-4"}>
-                    <button onClick={createTray} className={"button btn-ok"}>Speichern</button>
-                    <button onClick={() => {setModalState(false)}} className={"button"}>Abbrechen</button>
+                    <button onClick={createTray} className={"w-full button btn-ok"}>{t('save')}</button>
+                    <button onClick={() => {setModalState(false)}} className={"button"}>{t('cancel')}</button>
                 </div>
             </div>
         </div>

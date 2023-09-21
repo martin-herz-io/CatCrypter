@@ -10,6 +10,7 @@ export type Props = {
     trayList: { title: string; logo?: string; color?: string; date: string; location: string; }[];
     setTrayList: React.Dispatch<React.SetStateAction<{ title: string; logo?: string; color?: string; date: string; location: string; }[]>>;
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+    t: (key: string) => string;
 }
 
 // Component: Textbox
@@ -17,7 +18,8 @@ export const OpenTray: React.FC<Props> = (
     {
         trayList,
         setTrayList,
-        setModalState
+        setModalState,
+        t
     }
 ) => {
 
@@ -29,9 +31,9 @@ export const OpenTray: React.FC<Props> = (
     const createTray = async () => {
         
         // Check if all fields are 
-        if (inputLocation === '') { dialog.message('Bitte wähle den Speicherort für die Account-Ablage aus.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
-        if (!inputLocation.endsWith('.ccp')) { dialog.message('Bitte wähle eine gültige Account-Ablage aus.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
-        if (inputPassword === '') { dialog.message('Bitte das Passwort für die Account-Ablage ein.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
+        if (inputLocation === '') { dialog.message(t('dialog.locationOpen'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
+        if (!inputLocation.endsWith('.ccp')) { dialog.message(t('dialog.validTray'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
+        if (inputPassword === '') { dialog.message(t('dialog.enterPasswordOpen'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
 
         // try to create new file
         try {
@@ -43,14 +45,14 @@ export const OpenTray: React.FC<Props> = (
                 // Check if password is correct
                 const password = bcrypt.compareSync(`CatCrypter-TrayPassword:;!${inputPassword}!;:08022002.23w19mah`, tray.password)
                 if (!password) {
-                    dialog.message('Das eingegebene Passwort ist falsch.', { title: 'CatCrypter - Fehler', type: 'error' })
+                    dialog.message(t('dialog.wrongPassword'), { title: `CatCrypter - ${t('error')}`, type: 'error' })
                     return
                 }
 
                 // Check if tray is already loaded
                 const trayExists = trayList.find((tray) => tray.location === inputLocation)
                 if (trayExists) {
-                    dialog.message('Die Account-Ablage ist bereits geöffnet.', { title: 'CatCrypter - Fehler', type: 'error' })
+                    dialog.message(t('dialog.trayAlreadyOpen'), { title: `CatCrypter - ${t('error')}`, type: 'error' })
                     return
                 }
 
@@ -89,7 +91,7 @@ export const OpenTray: React.FC<Props> = (
             })
 
         } catch (error) {
-            dialog.message('Die Account-Ablage konnte nicht erstellt werden.', { title: 'CatCrypter - Fehler', type: 'error' })
+            dialog.message(t('dialog.openError'), { title: `CatCrypter - ${t('error')}`, type: 'error' })
             return
         }
 
@@ -100,17 +102,17 @@ export const OpenTray: React.FC<Props> = (
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>Ablage öffnen</p>
+                <p className={"text-2xl opacity-60 cursor-default"}>{t('openTray')}</p>
             </div>
             <div className={"flex flex-col gap-4 max-w-[228.08px]"}>
 
-                <Fileselector type={"open"} filters={[{ name: 'CatCrypter Ablage', extensions: ['ccp'] }]} placeholder={"Speicherort*"} onValueChange={setInputLocation} />
+                <Fileselector t={t} type={"open"} filters={[{ name: t('CatCrypterTray'), extensions: ['ccp'] }]} placeholder={`${t('location')}*`} onValueChange={setInputLocation} />
                 
-                <Textbox type={"password"} placeholder={"Passwort*"} onValueChange={setInputPassword} />
+                <Textbox type={"password"} placeholder={`${t('password')}*`} onValueChange={setInputPassword} />
         
                 <div className={"flex flex-row gap-4"}>
-                    <button onClick={createTray} className={"button btn-ok w-full"}>Öffnen</button>
-                    <button onClick={() => {setModalState(false)}} className={"button"}>Abbrechen</button>
+                    <button onClick={createTray} className={"w-full button btn-ok"}>{t('open')}</button>
+                    <button onClick={() => {setModalState(false)}} className={"button"}>{t('cancel')}</button>
                 </div>
             </div>
         </div>

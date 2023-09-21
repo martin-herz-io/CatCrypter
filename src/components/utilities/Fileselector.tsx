@@ -10,6 +10,7 @@ export type Props = {
     type?: string;
     filters?: { name: string; extensions: string[] }[];
     onValueChange?: (val: string) => void;
+    t: (key: string) => string;
 }
 
 // Component: Textbox
@@ -19,7 +20,8 @@ export const Fileselector: React.FC<Props> = (
         placeholder = "",
         type = "open",
         filters = [],
-        onValueChange = () => {}
+        onValueChange = () => {},
+        t
     }
 ) => {
 
@@ -45,7 +47,7 @@ export const Fileselector: React.FC<Props> = (
                     setInputValue(path)
                 }
             } catch (error) {
-                console.error('Fehler beim Öffnen des Dateiauswahldialogs:', error)
+                console.error(t('dialog.dialogError'), error)
             }
         }
 
@@ -60,7 +62,7 @@ export const Fileselector: React.FC<Props> = (
                     setInputValue(path)
                 }
             } catch (error) {
-                console.error('Fehler beim Öffnen des Dateiauswahldialogs:', error)
+                console.error(t('dialog.dialogError'), error)
             }
         }
     }

@@ -13,6 +13,7 @@ export type Props = {
     setCurrentTrayPassword: React.Dispatch<React.SetStateAction<string>>;
     setPasswordList: React.Dispatch<React.SetStateAction<{ title: string; username: string; password: string; }[]>>;
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+    t: (key: string) => string;
 }
 
 // Component: Textbox
@@ -23,7 +24,8 @@ export const LoadTray: React.FC<Props> = (
         setSelectedTray,
         setCurrentTrayPassword,
         setPasswordList,
-        setModalState
+        setModalState,
+        t
     }
 ) => {
 
@@ -34,7 +36,7 @@ export const LoadTray: React.FC<Props> = (
     const createTray = async () => {
         
         // Check if all fields are filled
-        if (inputPassword === '') { dialog.message('Bitte gebe ein Passwort ein.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
+        if (inputPassword === '') { dialog.message(t('dialog.enterPasswordOpen'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
 
         // Select tray
         const tray = trayList[select]
@@ -44,7 +46,7 @@ export const LoadTray: React.FC<Props> = (
 
         // Check if tray file exists
         fs.exists(tray.location).then((exists) => {
-            if (!exists) { dialog.message('Die ausgewählte Ablage existiert nicht mehr.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
+            if (!exists) { dialog.message(t('dialog.trayDeleted'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
         })
 
         // Open tray file
@@ -53,7 +55,7 @@ export const LoadTray: React.FC<Props> = (
             
             // Verify password
             bcrypt.compare(pw, trayFile.password).then((result) => {
-                if (!result) { dialog.message('Das eingegebene Passwort ist falsch.', { title: 'CatCrypter - Fehler', type: 'error' }); return }
+                if (!result) { dialog.message(t('dialog.wrongPassword'), { title: `CatCrypter - ${t('error')}`, type: 'error' }); return }
 
                 // Close modal
                 setModalState(false)
@@ -78,15 +80,15 @@ export const LoadTray: React.FC<Props> = (
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>Ablage öffnen</p>
+                <p className={"text-2xl opacity-60 cursor-default"}>{t('openTray')}</p>
             </div>
             <div className={"flex flex-col gap-4 max-w-[228.08px]"}>
                 
-                <Textbox type={"password"} placeholder={"Passwort*"} onValueChange={setInputPassword} />
+                <Textbox type={"password"} placeholder={`${t('password')}*`} onValueChange={setInputPassword} />
         
                 <div className={"flex flex-row gap-4"}>
-                    <button onClick={createTray} className={"button btn-ok"}>Öffnen</button>
-                    <button onClick={() => {setModalState(false)}} className={"button"}>Abbrechen</button>
+                    <button onClick={createTray} className={"w-full button btn-ok"}>{t('open')}</button>
+                    <button onClick={() => {setModalState(false)}} className={"button"}>{t('cancel')}</button>
                 </div>
             </div>
         </div>

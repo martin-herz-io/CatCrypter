@@ -13,6 +13,7 @@ export type Props = {
     selectedTray: number|null;
     currentTrayPassword: string;
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+    t: (key: string) => string;
 }
 
 // Component: Textbox
@@ -25,7 +26,8 @@ export const DeletePassword: React.FC<Props> = (
         trayList,
         selectedTray,
         currentTrayPassword,
-        setModalState
+        setModalState,
+        t
     }
 ) => {
 
@@ -76,12 +78,12 @@ export const DeletePassword: React.FC<Props> = (
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>{`"${title}" löschen?`}</p>
-                <p className={"opacity-60 cursor-default"}>Dieser Vorgang kann nicht rückgängig gemacht werden.</p>
+                <p className={"text-2xl opacity-60 cursor-default"}>{`"${title}" ${t('delete').toLowerCase()}?`}</p>
+                <p className={"opacity-60 cursor-default"}>{t('operationCannotBeUndone')}</p>
             </div>
             <div className={"flex flex-row gap-4"}>
-                <button onClick={deletePassword} className={"button btn-critical"}>Löschen</button>
-                <button onClick={() => {setModalState(false)}} className={"button"}>Abbrechen</button>
+                <button onClick={deletePassword} className={"w-full button btn-critical"}>{t('delete')}</button>
+                <button onClick={() => {setModalState(false)}} className={"button"}>{t('cancel')}</button>
             </div>
         </div>
     )

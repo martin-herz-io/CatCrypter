@@ -10,23 +10,24 @@ export type props = {
     color?: string;
     active?: boolean;
     addButton?: boolean;
+    t: (key: string) => string;
     onClick?: () => void;
 }
 
 // Component
-export const NavButton: React.FC<props> = ({ title, date, logo, color, active, addButton, onClick }) => {
+export const NavButton: React.FC<props> = ({ title, date, logo, color, active, addButton, t, onClick }) => {
 
-    // Date to string (DD.MM.YYYY) with double digits
-    const dateToString = (date: string) => {
-      const d = new Date(parseInt(date))
-      const day = d.getDate().toString().padStart(2, '0')
-      const month = (d.getMonth() + 1).toString().padStart(2, '0')
-      const year = d.getFullYear().toString()
-      return `${day}.${month}.${year}`
-    }
+  // Date to string (DD.MM.YYYY) with double digits
+  const dateToString = (date: string) => {
+    const d = new Date(parseInt(date))
+    const day = d.getDate().toString().padStart(2, '0')
+    const month = (d.getMonth() + 1).toString().padStart(2, '0')
+    const year = d.getFullYear().toString()
+    return `${day}.${month}.${year}`
+  }
 
-    // First letter from title
-    const firstLetter = title.charAt(0).toUpperCase()
+  // First letter from title
+  const firstLetter = title.charAt(0).toUpperCase()
 
     if (!addButton) {
       return (
@@ -40,7 +41,7 @@ export const NavButton: React.FC<props> = ({ title, date, logo, color, active, a
           )}
           <div>
             <p className={"cursor-pointer"}>{ title }</p>
-            <p className={"cursor-pointer text-sm -mt-1 text-zinc-400"}>{`Erstellt am ${dateToString(date)}`}</p>
+            <p className={"cursor-pointer text-sm -mt-1 text-zinc-400"}>{`${t('createdAt')} ${dateToString(date)}`}</p>
           </div>
         </div>
       )
@@ -51,7 +52,7 @@ export const NavButton: React.FC<props> = ({ title, date, logo, color, active, a
             <Icon name={"add"} type={"line"} className={"w-8"} />
           </div>
           <div>
-            <p className={"cursor-pointer"}>Ablage hinzufügen</p>
+            <p className={"cursor-pointer"}>{t('addTray')}</p>
           </div>
         </div>
       )

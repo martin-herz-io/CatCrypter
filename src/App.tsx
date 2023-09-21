@@ -7,10 +7,18 @@ import { PasswordItem } from "./components/PasswordItem";
 import { AddPassword } from "./components/modals/AddPassword";
 import { SelectCreateOpenTray } from "./components/modals/SelectCreateOpenTray";
 import { LoadTray } from "./components/modals/LoadTray";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import { useTranslation } from 'react-i18next';
+import en from "./assets/locales/en.json";
+import de from "./assets/locales/de.json";
 
 
 // Application
 function App() {
+
+  // Language
+  const [language, setLanguage] = useState<string>("en")
 
   // Switch Modal on and off
   const [modalState, setModalState] = useState(false)
@@ -37,6 +45,7 @@ function App() {
 
   // Load tray list from file
   useEffect(() => {
+
     // Check if Production or Development mode
     let configFile = "config.txt"
     if (process.env.NODE_ENV === "development") {
@@ -49,6 +58,7 @@ function App() {
 
         // Create config file
         fs.writeTextFile(configFile, JSON.stringify({
+          "language": "en",
           "trayList": []
         }), { dir: fs.BaseDirectory.AppLocalData })
       } else {
@@ -57,10 +67,27 @@ function App() {
         fs.readTextFile(configFile, { dir: fs.BaseDirectory.AppLocalData }).then((data) => {
           const config = JSON.parse(data)
           setTrayList(config.trayList)
+          setLanguage(config.language)
         })
       }
     })
+
+    // Initialize i18n
+    i18n.use(initReactI18next).init({
+      resources: {
+        en: { translation: en },
+        de: { translation: de }
+      },
+      lng: language,
+      fallbackLng: "en",
+      interpolation: { escapeValue: false }
+    })
   }, [])
+
+  
+
+  // Translation
+  const { t } = useTranslation()
 
 
 
@@ -96,12 +123,12 @@ function App() {
           const active = index === selectedTray
 
           return (
-            <NavButton key={index} onClick={() => {setModalContent(<LoadTray select={index} trayList={trayList} setSelectedTray={setSelectedTray} setCurrentTrayPassword={setCurrentTrayPassword} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}} title={i.title} logo={i.logo ? i.logo : null} color={i.color} date={i.date} active={active} />
+            <NavButton t={t} key={index} onClick={() => {setModalContent(<LoadTray t={t} select={index} trayList={trayList} setSelectedTray={setSelectedTray} setCurrentTrayPassword={setCurrentTrayPassword} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}} title={i.title} logo={i.logo ? i.logo : null} color={i.color} date={i.date} active={active} />
           )
         })}
 
         {/* Add button */}
-        <NavButton onClick={() => {setModalContent(<SelectCreateOpenTray trayList={trayList} setTrayList={setTrayList} setModalState={setModalState} setModalContent={setModalContent} />); toggleModal()}} title={""} date={""} addButton={true} />
+        <NavButton t={t} onClick={() => {setModalContent(<SelectCreateOpenTray t={t} trayList={trayList} setTrayList={setTrayList} setModalState={setModalState} setModalContent={setModalContent} />); toggleModal()}} title={""} date={""} addButton={true} />
 
       </div>
 
@@ -113,7 +140,7 @@ function App() {
         {selectedTray === null ? (
           <div className="w-[36rem] mx-auto h-full flex flex-col gap-4 justify-center items-center text-center">
             <Icon name={"file-tray"} className={"w-16 opacity-60"} />
-            <p className={"text-2xl opacity-60 cursor-default"}>Keine Ablage ausgewählt.</p>
+            <p className={"text-2xl opacity-60 cursor-default"}>{t('noTraySelected')}</p>
           </div>
         ) : (
           <>
@@ -130,14 +157,15 @@ function App() {
                   currentTrayPassword={currentTrayPassword}
                   setModalState={setModalState}
                   setModalContent={setModalContent}
+                  t={t}
                   toggleModal={toggleModal}
                 />
               )
             })}
 
-            <button onClick={() => {setModalContent(<AddPassword passwordList={passwordList} setPasswordList={setPasswordList} trayList={trayList} selectedTray={selectedTray} currentTrayPassword={currentTrayPassword} setModalState={setModalState} />); toggleModal()}} className={"group w-[36rem] hover:scale-[0.975] mx-auto px-4 py-4 border-2 border-zinc-800 hover:border-zinc-700 border-dashed rounded-xl relative flex items-center gap-3 cursor-pointer transition-all duration-300"}>
+            <button onClick={() => {setModalContent(<AddPassword t={t} passwordList={passwordList} setPasswordList={setPasswordList} trayList={trayList} selectedTray={selectedTray} currentTrayPassword={currentTrayPassword} setModalState={setModalState} />); toggleModal()}} className={"group w-[36rem] hover:scale-[0.975] mx-auto px-4 py-4 border-2 border-zinc-800 hover:border-zinc-700 border-dashed rounded-xl relative flex items-center gap-3 cursor-pointer transition-all duration-300"}>
               <Icon name={"add-circle"} className={"w-8 opacity-60 group-hover:opacity-100 transition-all duration-300"} />
-              <p className={"text-lg font-semibold mt-1 cursor-pointer opacity-60 group-hover:opacity-100 transition-all duration-300"}>Hinzufügen</p>
+              <p className={"text-lg font-semibold mt-1 cursor-pointer opacity-60 group-hover:opacity-100 transition-all duration-300"}>{t('add')}</p>
             </button>
           </>
         )}

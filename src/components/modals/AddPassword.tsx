@@ -12,6 +12,7 @@ export type Props = {
     selectedTray: number|null;
     currentTrayPassword: string;
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+    t: (key: string) => string;
 }
 
 // Component: Textbox
@@ -22,7 +23,8 @@ export const AddPassword: React.FC<Props> = (
         trayList,
         selectedTray,
         currentTrayPassword,
-        setModalState
+        setModalState,
+        t
     }
 ) => {
 
@@ -88,19 +90,19 @@ export const AddPassword: React.FC<Props> = (
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
-                <p className={"text-2xl opacity-60 cursor-default"}>Account hinzufügen</p>
+                <p className={"text-2xl opacity-60 cursor-default"}>{t('accountAdd')}</p>
             </div>
             <div className={"flex flex-col gap-4"}>
                 
-                <Textbox type={"text"} placeholder={"Titel"} onValueChange={setEditTitleInput} />
+                <Textbox type={"text"} placeholder={t('title')} onValueChange={setEditTitleInput} />
 
-                <Textbox type={"text"} placeholder={"Anmelde-ID"} onValueChange={setEditUsernameInput} />
+                <Textbox type={"text"} placeholder={t('username')} onValueChange={setEditUsernameInput} />
 
-                <Textbox type={"password"} placeholder={"Passwort"} onValueChange={setEditPasswordInput} />
+                <Textbox type={"password"} placeholder={t('password')} onValueChange={setEditPasswordInput} />
         
                 <div className={"flex flex-row gap-4"}>
-                    <button onClick={addPassword} className={"button btn-ok"}>Speichern</button>
-                    <button onClick={() => {setModalState(false)}} className={"button"}>Abbrechen</button>
+                    <button onClick={addPassword} className={"w-full button btn-ok"}>{t('save')}</button>
+                    <button onClick={() => {setModalState(false)}} className={"button"}>{t('cancel')}</button>
                 </div>
             </div>
         </div>
