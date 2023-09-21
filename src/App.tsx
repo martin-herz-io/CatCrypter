@@ -7,15 +7,15 @@ import { PasswordItem } from "./components/PasswordItem";
 import { AddPassword } from "./components/modals/AddPassword";
 import { SelectCreateOpenTray } from "./components/modals/SelectCreateOpenTray";
 import { LoadTray } from "./components/modals/LoadTray";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import "./scripts/i18n";
 import { useTranslation } from 'react-i18next';
-import en from "./assets/locales/en.json";
-import de from "./assets/locales/de.json";
+import { Settings } from "./components/modals/Settings";
 
 
 // Application
 function App() {
+
+  const v = "1.1.0-beta"
 
   // Language
   const [language, setLanguage] = useState<string>("en")
@@ -71,23 +71,12 @@ function App() {
         })
       }
     })
-
-    // Initialize i18n
-    i18n.use(initReactI18next).init({
-      resources: {
-        en: { translation: en },
-        de: { translation: de }
-      },
-      lng: language,
-      fallbackLng: "en",
-      interpolation: { escapeValue: false }
-    })
   }, [])
 
-  
 
   // Translation
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  useEffect(() => { i18n.changeLanguage(language) }, [language])
 
 
 
@@ -114,21 +103,39 @@ function App() {
 
 
       {/* Tray list */}
-      <div className={"min-w-[20rem] h-full bg-zinc-800/50 p-2.5 flex flex-col gap-2 overflow-auto"}>
+      <div className={"min-w-[20rem] h-full bg-zinc-800/50 flex flex-col"}>
 
-        {/* Tray list */}
-        {trayList.map((i, index) => {
+        <div className="h-full p-2.5 flex flex-col gap-2 overflow-auto">
 
-          // Check if tray is selected
-          const active = index === selectedTray
+            {/* Tray list */}
+            {trayList.map((i, index) => {
 
-          return (
-            <NavButton t={t} key={index} onClick={() => {setModalContent(<LoadTray t={t} select={index} trayList={trayList} setSelectedTray={setSelectedTray} setCurrentTrayPassword={setCurrentTrayPassword} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}} title={i.title} logo={i.logo ? i.logo : null} color={i.color} date={i.date} active={active} />
-          )
-        })}
+              // Check if tray is selected
+              const active = index === selectedTray
 
-        {/* Add button */}
-        <NavButton t={t} onClick={() => {setModalContent(<SelectCreateOpenTray t={t} trayList={trayList} setTrayList={setTrayList} setModalState={setModalState} setModalContent={setModalContent} />); toggleModal()}} title={""} date={""} addButton={true} />
+              return (
+                <NavButton t={t} key={index} onClick={() => {setModalContent(<LoadTray t={t} select={index} trayList={trayList} setSelectedTray={setSelectedTray} setCurrentTrayPassword={setCurrentTrayPassword} setPasswordList={setPasswordList} setModalState={setModalState} />); toggleModal()}} title={i.title} logo={i.logo ? i.logo : null} color={i.color} date={i.date} active={active} />
+              )
+            })}
+
+            {/* Add button */}
+            <NavButton t={t} onClick={() => {setModalContent(<SelectCreateOpenTray t={t} trayList={trayList} setTrayList={setTrayList} setModalState={setModalState} setModalContent={setModalContent} />); toggleModal()}} title={""} date={""} addButton={true} />
+
+        </div>
+
+        <div className="min-h-fit p-2.5">
+          <button
+
+            onClick={() => {setModalContent(<Settings v={v} t={t} setModalState={setModalState} setModalContent={setModalContent} />); toggleModal()}}
+            className={"w-full button flex justify-center items-center gap-1"}
+
+            >
+
+            <Icon name={"cog"} className={"w-6"} />
+            {t('settings')}
+
+          </button>
+        </div>
 
       </div>
 
