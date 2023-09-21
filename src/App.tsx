@@ -5,7 +5,7 @@ import { NavButton } from "./components/NavButton";
 import { Icon } from "./components/utilities/Icon";
 import { PasswordItem } from "./components/PasswordItem";
 import { AddPassword } from "./components/modals/AddPassword";
-import { CreateTray } from "./components/modals/CreateTray";
+import { SelectCreateOpenTray } from "./components/modals/SelectCreateOpenTray";
 import { LoadTray } from "./components/modals/LoadTray";
 
 
@@ -101,7 +101,7 @@ function App() {
         })}
 
         {/* Add button */}
-        <NavButton onClick={() => {setModalContent(<CreateTray trayList={trayList} setTrayList={setTrayList} setModalState={setModalState} />); toggleModal()}} title={""} date={""} addButton={true} />
+        <NavButton onClick={() => {setModalContent(<SelectCreateOpenTray trayList={trayList} setTrayList={setTrayList} setModalState={setModalState} setModalContent={setModalContent} />); toggleModal()}} title={""} date={""} addButton={true} />
 
       </div>
 
