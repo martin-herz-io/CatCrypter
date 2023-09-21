@@ -126,7 +126,7 @@ function App() {
         <div className="min-h-fit p-2.5">
           <button
 
-            onClick={() => {setModalContent(<Settings v={v} t={t} setModalState={setModalState} setModalContent={setModalContent} />); toggleModal()}}
+            onClick={() => {setModalContent(<Settings v={v} t={t} setModalState={setModalState} setModalContent={setModalContent} language={language} setLanguage={setLanguage} />); toggleModal()}}
             className={"w-full button flex justify-center items-center gap-1"}
 
             >
