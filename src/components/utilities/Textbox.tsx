@@ -6,6 +6,7 @@ export type Props = {
     value?: string;
     placeholder?: string;
     type?: string;
+    className?: string;
     onValueChange?: (val: string) => void;
 }
 
@@ -15,6 +16,7 @@ export const Textbox: React.FC<Props> = (
         value = "",
         placeholder = "",
         type = "text",
+        className = "",
         onValueChange = () => {}
     }
 ) => {
@@ -27,6 +29,11 @@ export const Textbox: React.FC<Props> = (
         onValueChange(inputValue)
     }, [inputValue, onValueChange])
 
+    // if value changes, update state
+    useEffect(() => {
+        setInputValue(value)
+    }, [value])
+
     
-    return <input type={type} placeholder={placeholder} className={"textbox"} value={inputValue} onChange={e => setInputValue(e.target.value)} />
+    return <input type={type} placeholder={placeholder} className={`textbox ${className}`} value={inputValue} onChange={e => setInputValue(e.target.value)} />
 }
