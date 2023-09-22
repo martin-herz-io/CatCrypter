@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { fs } from '@tauri-apps/api'
 import * as CryptoJS from 'crypto-js'
 import { Textbox } from '../utilities/Textbox';
+import { stringGenerator } from '../../scripts/stringGenerator';
+import { Icon } from '../utilities/Icon';
 
 // Properties: Textbox
 export type Props = {
@@ -39,7 +41,8 @@ export const EditPassword: React.FC<Props> = (
     // Edit input states
     const [editTitleInput, setEditTitleInput] = useState('')
     const [editUsernameInput, setEditUsernameInput] = useState('')
-    const [editPasswordInput, setEditPasswordInput] = useState('')
+    const [editPasswordInput, setEditPasswordInput] = useState(i.password)
+    const [editPasswordVisible, setEditPasswordVisible] = useState(false)
 
     // Edit current password from list and set new list
     const editPassword = () => {
@@ -96,6 +99,18 @@ export const EditPassword: React.FC<Props> = (
         setModalState(false)
     }
 
+    // Generate password
+    const generatePassword = () => {
+        const pw = stringGenerator(12, { numbers: true, lowerCase: true, upperCase: true, special: true })
+        setEditPasswordInput(pw)
+        setEditPasswordVisible(true)
+    }
+
+    // Password visibility
+    const changePasswordVisibility = () => {
+        setEditPasswordVisible(!editPasswordVisible)
+    }
+
     return (
         <div className={`flex flex-col gap-4 items-center`}>
             <div className={"text-center"}>
@@ -107,7 +122,12 @@ export const EditPassword: React.FC<Props> = (
 
                 <Textbox type={"text"} value={i.username} placeholder={t('username')} onValueChange={setEditUsernameInput} />
 
-                <Textbox type={"password"} value={i.password} placeholder={t('password')} onValueChange={setEditPasswordInput} />
+                <div className="flex flex-row">
+                    <Textbox className={"rounded-r-none"} type={editPasswordVisible ? 'text' : 'password'} placeholder={t('password')} value={editPasswordInput} onValueChange={setEditPasswordInput} />
+
+                    <button onClick={changePasswordVisibility} className={"button px-3 rounded-none hover:translate-y-0 focus:translate-y-0"}><Icon name={"eye"} className={"w-4"} /></button>
+                    <button onClick={generatePassword} className={"button px-3 rounded-l-none hover:translate-y-0 focus:translate-y-0"}><Icon name={"sparkles"} className={"w-4"} /></button>
+                </div>
         
                 <div className={"flex flex-row gap-4"}>
                     <button onClick={editPassword} className={"w-full button btn-ok"}>{t('save')}</button>

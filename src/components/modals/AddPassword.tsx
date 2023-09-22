@@ -1,8 +1,11 @@
 // React imports
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { fs } from '@tauri-apps/api'
 import * as CryptoJS from 'crypto-js'
 import { Textbox } from '../utilities/Textbox';
+import { Icon } from '../utilities/Icon';
+import { stringGenerator } from '../../scripts/stringGenerator';
+import { EditPassword } from './EditPassword';
 
 // Properties: Textbox
 export type Props = {
@@ -32,6 +35,7 @@ export const AddPassword: React.FC<Props> = (
     const [editTitleInput, setEditTitleInput] = useState('')
     const [editUsernameInput, setEditUsernameInput] = useState('')
     const [editPasswordInput, setEditPasswordInput] = useState('')
+    const [editPasswordVisible, setEditPasswordVisible] = useState(false)
 
     // Add new password to list
     const addPassword = () => {
@@ -86,6 +90,18 @@ export const AddPassword: React.FC<Props> = (
         setModalState(false)
     }
 
+    // Generate password
+    const generatePassword = () => {
+        const pw = stringGenerator(12, { numbers: true, lowerCase: true, upperCase: true, special: true })
+        setEditPasswordInput(pw)
+        setEditPasswordVisible(true)
+    }
+
+    // Change password visibility
+    const changePasswordVisibility = () => {
+        setEditPasswordVisible(!editPasswordVisible)
+    }
+
 
     return (
         <div className={`flex flex-col gap-4 items-center`}>
@@ -98,7 +114,12 @@ export const AddPassword: React.FC<Props> = (
 
                 <Textbox type={"text"} placeholder={t('username')} onValueChange={setEditUsernameInput} />
 
-                <Textbox type={"password"} placeholder={t('password')} onValueChange={setEditPasswordInput} />
+                <div className="flex flex-row">
+                    <Textbox className={"rounded-r-none"} type={editPasswordVisible ? 'text' : 'password'} placeholder={t('password')} value={editPasswordInput} onValueChange={setEditPasswordInput} />
+
+                    <button onClick={changePasswordVisibility} className={"button px-3 rounded-none hover:translate-y-0 focus:translate-y-0"}><Icon name={"eye"} className={"w-4"} /></button>
+                    <button onClick={generatePassword} className={"button px-3 rounded-l-none hover:translate-y-0 focus:translate-y-0"}><Icon name={"sparkles"} className={"w-4"} /></button>
+                </div>
         
                 <div className={"flex flex-row gap-4"}>
                     <button onClick={addPassword} className={"w-full button btn-ok"}>{t('save')}</button>
