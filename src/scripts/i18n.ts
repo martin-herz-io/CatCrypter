@@ -7,8 +7,14 @@ import dk from '../assets/locales/dk.json'; // Danish
 import en from '../assets/locales/en.json'; // English
 import es from '../assets/locales/es.json'; // Spanish
 import fr from '../assets/locales/fr.json'; // French
+import it from '../assets/locales/it.json'; // Italian
+import jp from '../assets/locales/jp.json'; // Japanese
+import kr from '../assets/locales/kr.json'; // Korean
 import nl from '../assets/locales/nl.json'; // Dutch
+import no from '../assets/locales/no.json'; // Norwegian
+import pl from '../assets/locales/pl.json'; // Polish
 import pt from '../assets/locales/pt.json'; // Portuguese
+import se from '../assets/locales/se.json'; // Swedish
 // Localizations
 
 i18n.use(initReactI18next).init({
@@ -18,8 +24,14 @@ i18n.use(initReactI18next).init({
         en: { translation: en }, // English
         es: { translation: es }, // Spanish
         fr: { translation: fr }, // French
+        it: { translation: it }, // Italian
+        jp: { translation: jp }, // Japanese
+        kr: { translation: kr }, // Korean
         nl: { translation: nl }, // Dutch
-        pt: { translation: pt } // Portuguese
+        no: { translation: no }, // Norwegian
+        pl: { translation: pl }, // Polish
+        pt: { translation: pt }, // Portuguese
+        se: { translation: se } // Swedish
     },
     fallbackLng: "en",
     interpolation: { escapeValue: false }

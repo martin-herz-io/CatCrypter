@@ -9,8 +9,14 @@ import dk_icon from '../../assets/locales/dk.png' // Danish
 import en_icon from '../../assets/locales/en.png' // English
 import es_icon from '../../assets/locales/es.png' // Spanish
 import fr_icon from '../../assets/locales/fr.png' // French
+import it_icon from '../../assets/locales/it.png' // Italian
+import jp_icon from '../../assets/locales/jp.png' // Japanese
+import kr_icon from '../../assets/locales/kr.png' // Korean
 import nl_icon from '../../assets/locales/nl.png' // Dutch
+import no_icon from '../../assets/locales/no.png' // Norwegian
+import pl_icon from '../../assets/locales/pl.png' // Polish
 import pt_icon from '../../assets/locales/pt.png' // Portuguese
+import se_icon from '../../assets/locales/se.png' // Swedish
 // Localizations - Flags
 
 // Properties: LanguageSwitch
@@ -60,14 +66,44 @@ export const LanguageSwitch: React.FC<Props> = ({t, v, language, setLanguage, se
             lang: "fr"
         },
         {
+            text: "Italiano",
+            icon: it_icon,
+            lang: "it"
+        },
+        {
+            text: "日本語",
+            icon: jp_icon,
+            lang: "jp"
+        },
+        {
+            text: "한국어",
+            icon: kr_icon,
+            lang: "kr"
+        },
+        {
             text: "Nederlands",
             icon: nl_icon,
             lang: "nl"
         },
         {
+            text: "Norsk",
+            icon: no_icon,
+            lang: "no"
+        },
+        {
+            text: "Polski",
+            icon: pl_icon,
+            lang: "pl"
+        },
+        {
             text: "Português",
             icon: pt_icon,
             lang: "pt"
+        },
+        {
+            text: "Svenska",
+            icon: se_icon,
+            lang: "se"
         }
     ]
 
