@@ -10,6 +10,7 @@ import { LoadTray } from "./components/modals/LoadTray";
 import "./scripts/i18n";
 import { useTranslation } from 'react-i18next';
 import { Settings } from "./components/modals/Settings";
+import axios from "axios";
 
 
 // Application
@@ -88,6 +89,28 @@ function App() {
   // Translation
   const { t, i18n } = useTranslation()
   useEffect(() => { i18n.changeLanguage(language) }, [language])
+
+
+  // Check github releases for new version
+  useEffect(() => {
+    axios.get("https://api.github.com/repos/martin-herz-io/CatCrypter/releases").then((response) => {
+        
+        // Get latest release
+        const latestRelease = response.data[0]
+        const currentVersion = `v${v}`
+
+        // Check if latest release is newer than current version
+        if (latestRelease.tag_name !== currentVersion) {
+            
+          // Alert user
+          alert(t('updateAvailable'))
+
+        }
+
+    }).catch((error) => {
+        console.error(error)
+    })
+  }, [])
 
 
 
