@@ -25,6 +25,7 @@
     "version": "Versione",
     "update": "Aggiorna",
     "selectLanguage": "Seleziona lingua",
+    "updateAvailable": "Una nuova versione di CatCrypter è disponibile. Apri le impostazioni per aggiornare.",
     "operationCannotBeUndone": "Questa operazione non può essere annullata.",
     "dialog.createError": "Impossibile creare il vassoio dell'account.",
     "dialog.openError": "Impossibile aprire il vassoio dell'account.",

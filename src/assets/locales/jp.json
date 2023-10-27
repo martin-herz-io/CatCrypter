@@ -25,6 +25,7 @@
     "version": "バージョン",
     "update": "更新",
     "selectLanguage": "言語を選択",
+    "updateAvailable": "CatCrypterの新しいバージョンが利用可能です。設定を開いて更新してください。",
     "operationCannotBeUndone": "この操作は元に戻せません。",
     "dialog.createError": "アカウントトレイを作成できませんでした。",
     "dialog.openError": "アカウントトレイを開けませんでした。",

@@ -25,6 +25,7 @@
     "version": "Version",
     "update": "Update",
     "selectLanguage": "Sprache auswählen",
+    "updateAvailable": "Eine neue Version von CatCrypter ist verfügbar. Öffne die Einstellungen, um das Update durchzuführen.",
     "operationCannotBeUndone": "Dieser Vorgang kann nicht rückgängig gemacht werden.",
     "dialog.createError": "Die Account-Ablage konnte nicht erstellt werden.",
     "dialog.openError": "Die Account-Ablage konnte nicht geöffnet werden.",

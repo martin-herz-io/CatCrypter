@@ -25,6 +25,7 @@
     "version": "Versão",
     "update": "Atualizar",
     "selectLanguage": "Selecionar idioma",
+    "updateAvailable": "Uma nova versão do CatCrypter está disponível. Abra as configurações para atualizar.",
     "operationCannotBeUndone": "Esta operação não pode ser desfeita.",
     "dialog.createError": "A bandeja de conta não pôde ser criada.",
     "dialog.openError": "A bandeja de conta não pôde ser aberta.",

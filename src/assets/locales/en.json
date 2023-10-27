@@ -25,6 +25,7 @@
     "version": "Version",
     "update": "Update",
     "selectLanguage": "Select Language",
+    "updateAvailable": "'A new version of CatCrypter is available. Open the settings to update.'",
     "operationCannotBeUndone": "This operation cannot be undone.",
     "dialog.createError": "The account tray could not be created.",
     "dialog.openError": "The account tray could not be opened.",

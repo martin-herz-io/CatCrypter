@@ -25,6 +25,7 @@
     "version": "Versjon",
     "update": "Oppdater",
     "selectLanguage": "Velg språk",
+    "updateAvailable": "En ny versjon av CatCrypter er tilgjengelig. Åpne innstillinger for å oppdatere.",
     "operationCannotBeUndone": "Denne handlingen kan ikke angres.",
     "dialog.createError": "Kunne ikke opprette konto-skuffen.",
     "dialog.openError": "Kunne ikke åpne konto-skuffen.",

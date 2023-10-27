@@ -25,6 +25,7 @@
     "version": "Version",
     "update": "Mettre à jour",
     "selectLanguage": "Sélectionner la langue",
+    "updateAvailable": "Une nouvelle version de CatCrypter est disponible. Ouvre les paramètres pour mettre à jour.",
     "operationCannotBeUndone": "Cette opération ne peut pas être annulée.",
     "dialog.createError": "Impossible de créer le plateau de compte.",
     "dialog.openError": "Impossible d'ouvrir le plateau de compte.",

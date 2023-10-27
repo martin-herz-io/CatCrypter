@@ -25,6 +25,7 @@
     "version": "Version",
     "update": "Uppdatera",
     "selectLanguage": "Välj språk",
+    "updateAvailable": "En ny version av CatCrypter är tillgänglig. Öppna inställningarna för att uppdatera.",
     "operationCannotBeUndone": "Denna åtgärd kan inte ångras.",
     "dialog.createError": "Kunde inte skapa kontobrickan.",
     "dialog.openError": "Kunde inte öppna kontobrickan.",

@@ -25,6 +25,7 @@
     "version": "Versie",
     "update": "Bijwerken",
     "selectLanguage": "Taal selecteren",
+    "updateAvailable": "Een nieuwe versie van CatCrypter is beschikbaar. Open de instellingen om te updaten.",
     "operationCannotBeUndone": "Deze handeling kan niet ongedaan worden gemaakt.",
     "dialog.createError": "Het account-lade kon niet worden aangemaakt.",
     "dialog.openError": "De account-lade kon niet worden geopend.",

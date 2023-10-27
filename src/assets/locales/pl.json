@@ -25,6 +25,7 @@
     "version": "Wersja",
     "update": "Aktualizuj",
     "selectLanguage": "Wybierz język",
+    "updateAvailable": "Nowa wersja CatCrypter jest dostępna. Otwórz ustawienia, aby zaktualizować.",
     "operationCannotBeUndone": "Tej operacji nie można cofnąć.",
     "dialog.createError": "Nie udało się utworzyć tacy konta.",
     "dialog.openError": "Nie można otworzyć tacy konta.",

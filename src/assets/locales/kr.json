@@ -25,6 +25,7 @@
     "version": "버전",
     "update": "업데이트",
     "selectLanguage": "언어 선택",
+    "updateAvailable": "CatCrypter의 새로운 버전이 사용 가능합니다. 설정을 열어 업데이트하세요.",
     "operationCannotBeUndone": "이 작업은 취소할 수 없습니다.",
     "dialog.createError": "계정 트레이를 생성할 수 없습니다.",
     "dialog.openError": "계정 트레이를 열 수 없습니다.",

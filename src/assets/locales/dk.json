@@ -25,6 +25,7 @@
     "version": "Version",
     "update": "Opdater",
     "selectLanguage": "Vælg sprog",
+    "updateAvailable": "En ny version af CatCrypter er tilgængelig. Åbn indstillingerne for at opdatere.",
     "operationCannotBeUndone": "Denne handling kan ikke fortrydes.",
     "dialog.createError": "Konto-bakken kunne ikke oprettes.",
     "dialog.openError": "Konto-bakken kunne ikke åbnes.",
