@@ -31,6 +31,18 @@
 
 </p>
 
+<p align="center">
+  <a href="https://martin-herz-io.notion.site/CatCrypter-4eae06db331e4f828b0448736791d1db">
+    <img alt="notion.so" src="https://i.imgur.com/5BlqE5K.png" height="48">
+  </a>
+
+  <a href="https://github.com/martin-herz-io/CatCrypter/releases">
+    <img alt="Download" src="https://i.imgur.com/16l6RUo.png" height="48">
+  </a>
+</p>
+
+---
+
 
 
 ## What is CatCrypter?
